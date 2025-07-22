@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 GW AI Factory Data Center - Real-Time Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns/dist/chartjs-adapter-date-fns.bundle.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: #ffffff;
+            overflow-x: auto;
+        }
+
+        .header {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            text-align: center;
+            border-bottom: 2px solid #4CAF50;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            margin: 20px;
+            border-radius: 10px;
+            flex-wrap: wrap;
+        }
+
+        .status-item {
+            text-align: center;
+            min-width: 150px;
+            margin: 5px;
+        }
+
+        .status-value {
+            font-size: 2em;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        .status-label {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .chart-container {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .chart-title {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .chart-canvas {
+            position: relative;
+            height: 300px;
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px;
+        }
+
+        .metric-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .metric-value {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .metric-label {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+
+        .alert {
+            background: rgba(255, 193, 7, 0.2);
+            border: 1px solid #ffc107;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 10px 20px;
+            color: #ffc107;
+        }
+
+        .success {
+            background: rgba(40, 167, 69, 0.2);
+            border: 1px solid #28a745;
+            color: #28a745;
+        }
+
+        .warning {
+            background: rgba(220, 53, 69, 0.2);
+            border: 1px solid #dc3545;
+            color: #dc3545;
+        }
+
+        .control-panel {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .control-button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin: 5px;
+            transition: background 0.3s;
+        }
+
+        .control-button:hover {
+            background: #45a049;
+        }
+
+        .control-button.danger {
+            background: #dc3545;
+        }
+
+        .control-button.danger:hover {
+            background: #c82333;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .status-bar {
+                flex-direction: column;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🏭 5 GW AI Factory Data Center</h1>
+        <div class="subtitle">Real-Time Monitoring Dashboard | 150,000 GPUs | 25 ExaFLOPS</div>
+    </div>
+
+    <div class="status-bar">
+        <div class="status-item">
+            <div class="status-value" id="totalPower">4,320</div>
+            <div class="status-label">Power (MW)</div>
+        </div>
+        <div class="status-item">
+            <div class="status-value" id="pueValue">1.08</div>
+            <div class="status-label">PUE</div>
+        </div>
+        <div class="status-item">
+            <div class="status-value" id="gpuUtil">87.3</div>
+            <div class="status-label">GPU Util (%)</div>
+        </div>
+        <div class="status-item">
+            <div class="status-value" id="uptime">99.995</div>
+            <div class="status-label">Uptime (%)</div>
+        </div>
+        <div class="status-item">
+            <div class="status-value" id="temperature">22.5</div>
+            <div class="status-label">Avg Temp (°C)</div>
+        </div>
+        <div class="status-item">
+            <div class="status-value" id="performance">21.8</div>
+            <div class="status-label">Performance (ExaFLOPS)</div>
+        </div>
+    </div>
+
+    <div class="alert success">
+        ✅ All systems operational | Grid connection stable | Cooling systems optimal
+    </div>
+
+    <div class="control-panel">
+        <button class="control-button" onclick="startSimulation()">▶️ Start Simulation</button>
+        <button class="control-button" onclick="pauseSimulation()">⏸️ Pause</button>
+        <button class="control-button" onclick="resetSimulation()">🔄 Reset</button>
+        <button class="control-button" onclick="exportData()">📊 Export Data</button>
+        <button class="control-button danger" onclick="emergencyShutdown()">🚨 Emergency Stop</button>
+    </div>
+
+    <div class="dashboard-grid">
+        <div class="chart-container">
+            <div class="chart-title">Power Consumption (MW)</div>
+            <div class="chart-canvas">
+                <canvas id="powerChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-title">GPU Utilization (%)</div>
+            <div class="chart-canvas">
+                <canvas id="gpuChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-title">Cooling Load (MW)</div>
+            <div class="chart-canvas">
+                <canvas id="coolingChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-title">Performance Metrics</div>
+            <div class="chart-canvas">
+                <canvas id="performanceChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-title">Zone Power Distribution</div>
+            <div class="chart-canvas">
+                <canvas id="zoneChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-container">
+            <div class="chart-title">Environmental Metrics</div>
+            <div class="chart-canvas">
+                <canvas id="environmentChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <div class="metrics-grid">
+        <div class="metric-card">
+            <div class="metric-value" style="color: #4CAF50;">3.57M</div>
+            <div class="metric-label">GB300/B300 GPUs</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value" style="color: #2196F3;">8,929</div>
+            <div class="metric-label">Peak Training (ExaFLOPS FP16)</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value" style="color: #FF6B35;">35.7M</div>
+            <div class="metric-label">Peak FP4 (PFLOPS)</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value" style="color: #FF9800;">6.65</div>
+            <div class="metric-label">Power Consumption (GW)</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value" style="color: #9C27B0;">$210B</div>
+            <div class="metric-label">Annual Revenue (USD)</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value" style="color: #F44336;">60</div>
+            <div class="metric-label">Network (TB/s)</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value" style="color: #00BCD4;">1.5</div>
+            <div class="metric-label">Water (MGD)</div>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let simulationRunning = false;
+        let simulationInterval;
+        let charts = {};
+        let dataPoints = {
+            power: [],
+            gpu: [],
+            cooling: [],
+            performance: []
+        };
+
+        // Updated data for 5 GW scale GB300/B300 simulation
+         const simulationData = {
+             totalGPUs: 3571428,
+             trainingGPUs: 2380952,
+             inferenceGPUs: 1190476,
+             peakTrainingPerformance: 8928.6,
+             peakFP4Performance: 35714280,
+             peakInferencePerformance: 4464.3,
+             powerConsumption: 6648,
+             pue: 1.105,
+             revenue: 210.0,
+             roi: 133.3,
+             carbonEmissions: 23294589
+         };
+
+        // Initialize charts
+        function initializeCharts() {
+            // Power Chart
+            const powerCtx = document.getElementById('powerChart').getContext('2d');
+            charts.power = new Chart(powerCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Total Power (MW)',
+                        data: [],
+                        borderColor: '#4CAF50',
+                        backgroundColor: 'rgba(76, 175, 80, 0.1)',
+                        tension: 0.4
+                    }, {
+                        label: 'IT Load (MW)',
+                        data: [],
+                        borderColor: '#2196F3',
+                        backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#ffffff' }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: '#ffffff' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        },
+                        y: {
+                            ticks: { color: '#ffffff' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        }
+                    }
+                }
+            });
+
+            // GPU Utilization Chart
+            const gpuCtx = document.getElementById('gpuChart').getContext('2d');
+            charts.gpu = new Chart(gpuCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Training GPUs (%)',
+                        data: [],
+                        borderColor: '#FF9800',
+                        backgroundColor: 'rgba(255, 152, 0, 0.1)',
+                        tension: 0.4
+                    }, {
+                        label: 'Inference GPUs (%)',
+                        data: [],
+                        borderColor: '#9C27B0',
+                        backgroundColor: 'rgba(156, 39, 176, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#ffffff' }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: '#ffffff' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        },
+                        y: {
+                            min: 0,
+                            max: 100,
+                            ticks: { color: '#ffffff' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        }
+                    }
+                }
+            });
+
+            // Cooling Chart
+            const coolingCtx = document.getElementById('coolingChart').getContext('2d');
+            charts.cooling = new Chart(coolingCtx, {
+                type: 'line',
+                data: {
+                    labels: [],
+                    datasets: [{
+                        label: 'Cooling Load (MW)',
+                        data: [],
+                        borderColor: '#00BCD4',
+                        backgroundColor: 'rgba(0, 188, 212, 0.1)',
+                        tension: 0.4
+                    }, {
+                        label: 'Water Temp (°C)',
+                        data: [],
+                        borderColor: '#F44336',
+                        backgroundColor: 'rgba(244, 67, 54, 0.1)',
+                        tension: 0.4,
+                        yAxisID: 'y1'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#ffffff' }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: '#ffffff' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        },
+                        y: {
+                            type: 'linear',
+                            display: true,
+                            position: 'left',
+                            ticks: { color: '#ffffff' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        },
+                        y1: {
+                            type: 'linear',
+                            display: true,
+                            position: 'right',
+                            ticks: { color: '#ffffff' },
+                            grid: { drawOnChartArea: false }
+                        }
+                    }
+                }
+            });
+
+            // Performance Chart
+            const performanceCtx = document.getElementById('performanceChart').getContext('2d');
+            charts.performance = new Chart(performanceCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Training FP16 (ExaFLOPS)', 'Training FP4 (PFLOPS)', 'Inference FP16 (ExaFLOPS)', 'Memory BW (TB/s)'],
+                    datasets: [{
+                        label: 'GB300/B300 Performance',
+                        data: [8928.6, 35714.28, 4464.3, 28571.4],
+                        backgroundColor: [
+                            'rgba(76, 175, 80, 0.8)',
+                            'rgba(255, 107, 53, 0.8)',
+                            'rgba(33, 150, 243, 0.8)',
+                            'rgba(156, 39, 176, 0.8)'
+                        ],
+                        borderColor: [
+                            '#4CAF50',
+                            '#FF6B35',
+                            '#2196F3',
+                            '#9C27B0'
+                        ],
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        title: {
+                            display: true,
+                            text: 'GB300/B300 AI Performance Metrics',
+                            color: '#ffffff'
+                        }
+                    },
+                    scales: {
+                        x: {
+                            ticks: { color: '#ffffff' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        },
+                        y: {
+                            type: 'logarithmic',
+                            ticks: { color: '#ffffff' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                        }
+                    }
+                }
+            });
+
+            // Zone Distribution Chart
+            const zoneCtx = document.getElementById('zoneChart').getContext('2d');
+            charts.zone = new Chart(zoneCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Zone A', 'Zone B', 'Zone C', 'Infrastructure'],
+                    datasets: [{
+                        data: [1440, 1440, 1440, 0],
+                        backgroundColor: [
+                            '#4CAF50',
+                            '#2196F3',
+                            '#FF9800',
+                            '#9C27B0'
+                        ],
+                        borderWidth: 2,
+                        borderColor: '#ffffff'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#ffffff' }
+                        }
+                    }
+                }
+            });
+
+            // Environmental Chart
+            const envCtx = document.getElementById('environmentChart').getContext('2d');
+            charts.environment = new Chart(envCtx, {
+                type: 'radar',
+                data: {
+                    labels: ['PUE', 'WUE', 'Carbon', 'Efficiency', 'Renewable'],
+                    datasets: [{
+                        label: 'Current',
+                        data: [92, 85, 70, 88, 95],
+                        borderColor: '#4CAF50',
+                        backgroundColor: 'rgba(76, 175, 80, 0.2)',
+                        pointBackgroundColor: '#4CAF50'
+                    }, {
+                        label: 'Target',
+                        data: [95, 90, 100, 90, 100],
+                        borderColor: '#2196F3',
+                        backgroundColor: 'rgba(33, 150, 243, 0.1)',
+                        pointBackgroundColor: '#2196F3'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            labels: { color: '#ffffff' }
+                        }
+                    },
+                    scales: {
+                        r: {
+                            min: 0,
+                            max: 100,
+                            ticks: { color: '#ffffff' },
+                            grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                            pointLabels: { color: '#ffffff' }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Simulation functions
+        function generateRealisticData() {
+            const now = new Date();
+            const baseLoad = 4000;
+            const variation = 200;
+            const timeVariation = Math.sin(now.getMinutes() / 60 * 2 * Math.PI) * 100;
+            const randomVariation = (Math.random() - 0.5) * variation;
+            
+            return {
+                timestamp: now.toLocaleTimeString(),
+                totalPower: baseLoad + timeVariation + randomVariation,
+                itLoad: (baseLoad + timeVariation + randomVariation) * 0.85,
+                gpuUtilization: 75 + Math.sin(now.getSeconds() / 60 * 2 * Math.PI) * 15 + (Math.random() - 0.5) * 10,
+                trainingUtil: 80 + (Math.random() - 0.5) * 20,
+                inferenceUtil: 85 + (Math.random() - 0.5) * 15,
+                coolingLoad: (baseLoad + timeVariation + randomVariation) * 0.9,
+                waterTemp: 12 + Math.sin(now.getMinutes() / 30 * Math.PI) * 3,
+                pue: 1.08 + (Math.random() - 0.5) * 0.02,
+                performance: 21.8 + (Math.random() - 0.5) * 2
+            };
+        }
+
+        function updateCharts() {
+            const data = generateRealisticData();
+            const maxDataPoints = 20;
+
+            // Update status bar
+            document.getElementById('totalPower').textContent = Math.round(data.totalPower).toLocaleString();
+            document.getElementById('pueValue').textContent = data.pue.toFixed(3);
+            document.getElementById('gpuUtil').textContent = data.gpuUtilization.toFixed(1);
+            document.getElementById('performance').textContent = data.performance.toFixed(1);
+
+            // Update power chart
+            charts.power.data.labels.push(data.timestamp);
+            charts.power.data.datasets[0].data.push(data.totalPower);
+            charts.power.data.datasets[1].data.push(data.itLoad);
+            
+            if (charts.power.data.labels.length > maxDataPoints) {
+                charts.power.data.labels.shift();
+                charts.power.data.datasets[0].data.shift();
+                charts.power.data.datasets[1].data.shift();
+            }
+            charts.power.update('none');
+
+            // Update GPU chart
+            charts.gpu.data.labels.push(data.timestamp);
+            charts.gpu.data.datasets[0].data.push(data.trainingUtil);
+            charts.gpu.data.datasets[1].data.push(data.inferenceUtil);
+            
+            if (charts.gpu.data.labels.length > maxDataPoints) {
+                charts.gpu.data.labels.shift();
+                charts.gpu.data.datasets[0].data.shift();
+                charts.gpu.data.datasets[1].data.shift();
+            }
+            charts.gpu.update('none');
+
+            // Update cooling chart
+            charts.cooling.data.labels.push(data.timestamp);
+            charts.cooling.data.datasets[0].data.push(data.coolingLoad);
+            charts.cooling.data.datasets[1].data.push(data.waterTemp);
+            
+            if (charts.cooling.data.labels.length > maxDataPoints) {
+                charts.cooling.data.labels.shift();
+                charts.cooling.data.datasets[0].data.shift();
+                charts.cooling.data.datasets[1].data.shift();
+            }
+            charts.cooling.update('none');
+
+            // Update zone distribution
+            const zoneVariation = 50;
+            charts.zone.data.datasets[0].data = [
+                1440 + (Math.random() - 0.5) * zoneVariation,
+                1440 + (Math.random() - 0.5) * zoneVariation,
+                1440 + (Math.random() - 0.5) * zoneVariation,
+                data.totalPower - 4320
+            ];
+            charts.zone.update('none');
+        }
+
+        function startSimulation() {
+            if (!simulationRunning) {
+                simulationRunning = true;
+                simulationInterval = setInterval(updateCharts, 2000);
+                console.log('Simulation started');
+            }
+        }
+
+        function pauseSimulation() {
+            if (simulationRunning) {
+                simulationRunning = false;
+                clearInterval(simulationInterval);
+                console.log('Simulation paused');
+            }
+        }
+
+        function resetSimulation() {
+            pauseSimulation();
+            
+            // Clear all chart data
+            Object.values(charts).forEach(chart => {
+                if (chart.data.labels) {
+                    chart.data.labels.length = 0;
+                    chart.data.datasets.forEach(dataset => {
+                        if (dataset.data) dataset.data.length = 0;
+                    });
+                    chart.update();
+                }
+            });
+            
+            console.log('Simulation reset');
+        }
+
+        function exportData() {
+            const exportData = {
+                timestamp: new Date().toISOString(),
+                powerData: charts.power.data,
+                gpuData: charts.gpu.data,
+                coolingData: charts.cooling.data
+            };
+            
+            const dataStr = JSON.stringify(exportData, null, 2);
+            const dataBlob = new Blob([dataStr], {type: 'application/json'});
+            const url = URL.createObjectURL(dataBlob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = '5gw_datacenter_export.json';
+            link.click();
+            
+            console.log('Data exported');
+        }
+
+        function emergencyShutdown() {
+            if (confirm('Are you sure you want to initiate emergency shutdown?')) {
+                pauseSimulation();
+                
+                // Simulate emergency shutdown
+                document.querySelector('.alert').className = 'alert warning';
+                document.querySelector('.alert').innerHTML = '🚨 EMERGENCY SHUTDOWN INITIATED | All systems powering down safely';
+                
+                setTimeout(() => {
+                    document.querySelector('.alert').className = 'alert';
+                    document.querySelector('.alert').innerHTML = '⚠️ System in safe mode | Manual restart required';
+                }, 3000);
+                
+                console.log('Emergency shutdown initiated');
+            }
+        }
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCharts();
+            
+            // Start simulation automatically
+            setTimeout(() => {
+                startSimulation();
+            }, 1000);
+            
+            // Update timestamp every second
+            setInterval(() => {
+                const now = new Date();
+                document.querySelector('.subtitle').innerHTML = 
+                    `Real-Time Monitoring Dashboard | 150,000 GPUs | 25 ExaFLOPS | ${now.toLocaleString()}`;
+            }, 1000);
+        });
+    </script>
+</body>
+</html>

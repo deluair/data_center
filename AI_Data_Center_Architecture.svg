@@ -1,0 +1,203 @@
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0f8ff;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#e6f3ff;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="gpuGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#4CAF50;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#45a049;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="networkGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2196F3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1976D2;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="powerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF9800;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#F57C00;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="coolingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00BCD4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0097A7;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="800" fill="url(#bgGradient)"/>
+  
+  <!-- Title -->
+  <text x="600" y="30" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#333">AI Factory Data Center Architecture</text>
+  
+  <!-- Main Building Outline -->
+  <rect x="50" y="60" width="1100" height="680" fill="none" stroke="#333" stroke-width="3" rx="10"/>
+  
+  <!-- Zone A: GPU Training Cluster -->
+  <g id="zoneA">
+    <rect x="80" y="100" width="320" height="280" fill="url(#gpuGradient)" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="240" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">ZONE A: GPU Training Cluster</text>
+    
+    <!-- GPU Racks -->
+    <rect x="100" y="140" width="40" height="60" fill="#2E7D32" stroke="white" stroke-width="1"/>
+    <rect x="150" y="140" width="40" height="60" fill="#2E7D32" stroke="white" stroke-width="1"/>
+    <rect x="200" y="140" width="40" height="60" fill="#2E7D32" stroke="white" stroke-width="1"/>
+    <rect x="250" y="140" width="40" height="60" fill="#2E7D32" stroke="white" stroke-width="1"/>
+    <rect x="300" y="140" width="40" height="60" fill="#2E7D32" stroke="white" stroke-width="1"/>
+    
+    <rect x="100" y="220" width="40" height="60" fill="#2E7D32" stroke="white" stroke-width="1"/>
+    <rect x="150" y="220" width="40" height="60" fill="#2E7D32" stroke="white" stroke-width="1"/>
+    <rect x="200" y="220" width="40" height="60" fill="#2E7D32" stroke="white" stroke-width="1"/>
+    <rect x="250" y="220" width="40" height="60" fill="#2E7D32" stroke="white" stroke-width="1"/>
+    <rect x="300" y="220" width="40" height="60" fill="#2E7D32" stroke="white" stroke-width="1"/>
+    
+    <text x="240" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">10,000+ GPUs</text>
+    <text x="240" y="335" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">50 MW Power</text>
+    <text x="240" y="350" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Liquid Cooling</text>
+  </g>
+  
+  <!-- Zone B: GPU Inference Cluster -->
+  <g id="zoneB">
+    <rect x="440" y="100" width="320" height="280" fill="url(#gpuGradient)" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="600" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">ZONE B: GPU Inference Cluster</text>
+    
+    <!-- GPU Racks -->
+    <rect x="460" y="140" width="40" height="60" fill="#2E7D32" stroke="white" stroke-width="1"/>
+    <rect x="510" y="140" width="40" height="60" fill="#2E7D32" stroke="white" stroke-width="1"/>
+    <rect x="560" y="140" width="40" height="60" fill="#2E7D32" stroke="white" stroke-width="1"/>
+    <rect x="610" y="140" width="40" height="60" fill="#2E7D32" stroke="white" stroke-width="1"/>
+    <rect x="660" y="140" width="40" height="60" fill="#2E7D32" stroke="white" stroke-width="1"/>
+    
+    <rect x="460" y="220" width="40" height="60" fill="#2E7D32" stroke="white" stroke-width="1"/>
+    <rect x="510" y="220" width="40" height="60" fill="#2E7D32" stroke="white" stroke-width="1"/>
+    <rect x="560" y="220" width="40" height="60" fill="#2E7D32" stroke="white" stroke-width="1"/>
+    <rect x="610" y="220" width="40" height="60" fill="#2E7D32" stroke="white" stroke-width="1"/>
+    <rect x="660" y="220" width="40" height="60" fill="#2E7D32" stroke="white" stroke-width="1"/>
+    
+    <text x="600" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">5,000+ GPUs</text>
+    <text x="600" y="335" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">25 MW Power</text>
+    <text x="600" y="350" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Hybrid Cooling</text>
+  </g>
+  
+  <!-- Zone C: Storage & Management -->
+  <g id="zoneC">
+    <rect x="800" y="100" width="320" height="280" fill="#9C27B0" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="960" y="125" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">ZONE C: Storage & Management</text>
+    
+    <!-- Storage Racks -->
+    <rect x="820" y="140" width="40" height="60" fill="#7B1FA2" stroke="white" stroke-width="1"/>
+    <rect x="870" y="140" width="40" height="60" fill="#7B1FA2" stroke="white" stroke-width="1"/>
+    <rect x="920" y="140" width="40" height="60" fill="#7B1FA2" stroke="white" stroke-width="1"/>
+    <rect x="970" y="140" width="40" height="60" fill="#7B1FA2" stroke="white" stroke-width="1"/>
+    <rect x="1020" y="140" width="40" height="60" fill="#7B1FA2" stroke="white" stroke-width="1"/>
+    
+    <rect x="820" y="220" width="40" height="60" fill="#7B1FA2" stroke="white" stroke-width="1"/>
+    <rect x="870" y="220" width="40" height="60" fill="#7B1FA2" stroke="white" stroke-width="1"/>
+    <rect x="920" y="220" width="40" height="60" fill="#7B1FA2" stroke="white" stroke-width="1"/>
+    <rect x="970" y="220" width="40" height="60" fill="#7B1FA2" stroke="white" stroke-width="1"/>
+    <rect x="1020" y="220" width="40" height="60" fill="#7B1FA2" stroke="white" stroke-width="1"/>
+    
+    <text x="960" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">100+ PB Storage</text>
+    <text x="960" y="335" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Management Systems</text>
+    <text x="960" y="350" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Air Cooling</text>
+  </g>
+  
+  <!-- Central Networking Spine -->
+  <g id="networking">
+    <rect x="80" y="420" width="1040" height="80" fill="url(#networkGradient)" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="600" y="445" text-anchor="middle" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="white">CENTRAL NETWORKING SPINE</text>
+    
+    <!-- Network Switches -->
+    <rect x="200" y="455" width="60" height="30" fill="#1565C0" stroke="white" stroke-width="1" rx="3"/>
+    <rect x="300" y="455" width="60" height="30" fill="#1565C0" stroke="white" stroke-width="1" rx="3"/>
+    <rect x="400" y="455" width="60" height="30" fill="#1565C0" stroke="white" stroke-width="1" rx="3"/>
+    <rect x="500" y="455" width="60" height="30" fill="#1565C0" stroke="white" stroke-width="1" rx="3"/>
+    <rect x="600" y="455" width="60" height="30" fill="#1565C0" stroke="white" stroke-width="1" rx="3"/>
+    <rect x="700" y="455" width="60" height="30" fill="#1565C0" stroke="white" stroke-width="1" rx="3"/>
+    <rect x="800" y="455" width="60" height="30" fill="#1565C0" stroke="white" stroke-width="1" rx="3"/>
+    <rect x="900" y="455" width="60" height="30" fill="#1565C0" stroke="white" stroke-width="1" rx="3"/>
+    
+    <text x="600" y="475" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="white">800G InfiniBand/Ultra Ethernet • Sub-microsecond Latency</text>
+  </g>
+  
+  <!-- Infrastructure Zone -->
+  <g id="infrastructure">
+    <!-- Power Plant -->
+    <rect x="80" y="540" width="320" height="180" fill="url(#powerGradient)" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="240" y="565" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">POWER INFRASTRUCTURE</text>
+    
+    <!-- Power Equipment -->
+    <rect x="100" y="580" width="50" height="40" fill="#E65100" stroke="white" stroke-width="1"/>
+    <rect x="160" y="580" width="50" height="40" fill="#E65100" stroke="white" stroke-width="1"/>
+    <rect x="220" y="580" width="50" height="40" fill="#E65100" stroke="white" stroke-width="1"/>
+    <rect x="280" y="580" width="50" height="40" fill="#E65100" stroke="white" stroke-width="1"/>
+    
+    <rect x="100" y="640" width="50" height="40" fill="#E65100" stroke="white" stroke-width="1"/>
+    <rect x="160" y="640" width="50" height="40" fill="#E65100" stroke="white" stroke-width="1"/>
+    <rect x="220" y="640" width="50" height="40" fill="#E65100" stroke="white" stroke-width="1"/>
+    <rect x="280" y="640" width="50" height="40" fill="#E65100" stroke="white" stroke-width="1"/>
+    
+    <text x="240" y="700" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">500 MW Capacity</text>
+    
+    <!-- Cooling Systems -->
+    <rect x="440" y="540" width="320" height="180" fill="url(#coolingGradient)" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="600" y="565" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">COOLING SYSTEMS</text>
+    
+    <!-- Cooling Equipment -->
+    <circle cx="500" cy="600" r="25" fill="#006064" stroke="white" stroke-width="2"/>
+    <circle cx="560" cy="600" r="25" fill="#006064" stroke="white" stroke-width="2"/>
+    <circle cx="620" cy="600" r="25" fill="#006064" stroke="white" stroke-width="2"/>
+    <circle cx="680" cy="600" r="25" fill="#006064" stroke="white" stroke-width="2"/>
+    
+    <circle cx="500" cy="660" r="25" fill="#006064" stroke="white" stroke-width="2"/>
+    <circle cx="560" cy="660" r="25" fill="#006064" stroke="white" stroke-width="2"/>
+    <circle cx="620" cy="660" r="25" fill="#006064" stroke="white" stroke-width="2"/>
+    <circle cx="680" cy="660" r="25" fill="#006064" stroke="white" stroke-width="2"/>
+    
+    <text x="600" y="700" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">Liquid + Immersion</text>
+    
+    <!-- Management & Control -->
+    <rect x="800" y="540" width="320" height="180" fill="#607D8B" stroke="#333" stroke-width="2" rx="5"/>
+    <text x="960" y="565" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="white">MANAGEMENT & CONTROL</text>
+    
+    <!-- Control Systems -->
+    <rect x="820" y="580" width="80" height="50" fill="#455A64" stroke="white" stroke-width="1" rx="3"/>
+    <rect x="920" y="580" width="80" height="50" fill="#455A64" stroke="white" stroke-width="1" rx="3"/>
+    <rect x="820" y="650" width="80" height="50" fill="#455A64" stroke="white" stroke-width="1" rx="3"/>
+    <rect x="920" y="650" width="80" height="50" fill="#455A64" stroke="white" stroke-width="1" rx="3"/>
+    
+    <text x="960" y="700" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white">DCIM & Security</text>
+  </g>
+  
+  <!-- Network Connections -->
+  <g id="connections" stroke="#333" stroke-width="2" fill="none">
+    <!-- Zone A to Network -->
+    <line x1="240" y1="380" x2="240" y2="420"/>
+    <line x1="240" y1="420" x2="300" y2="455"/>
+    
+    <!-- Zone B to Network -->
+    <line x1="600" y1="380" x2="600" y2="420"/>
+    <line x1="600" y1="420" x2="600" y2="455"/>
+    
+    <!-- Zone C to Network -->
+    <line x1="960" y1="380" x2="960" y2="420"/>
+    <line x1="960" y1="420" x2="800" y2="455"/>
+    
+    <!-- Network to Infrastructure -->
+    <line x1="300" y1="500" x2="240" y2="540"/>
+    <line x1="600" y1="500" x2="600" y2="540"/>
+    <line x1="800" y1="500" x2="960" y2="540"/>
+  </g>
+  
+  <!-- Legend -->
+  <g id="legend">
+    <rect x="50" y="750" width="400" height="40" fill="white" stroke="#333" stroke-width="1" rx="3"/>
+    <text x="60" y="765" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">Key Features:</text>
+    <text x="60" y="780" font-family="Arial, sans-serif" font-size="10" fill="#333">• Modular Design • Redundant Systems • PUE &lt; 1.2 • 99.99% Uptime • Scalable to 1GW</text>
+  </g>
+  
+  <!-- Performance Metrics -->
+  <g id="metrics">
+    <rect x="750" y="750" width="400" height="40" fill="white" stroke="#333" stroke-width="1" rx="3"/>
+    <text x="760" y="765" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#333">Performance Targets:</text>
+    <text x="760" y="780" font-family="Arial, sans-serif" font-size="10" fill="#333">• 15,000+ GPUs • 500 MW Power • &lt;1μs Latency • 100+ PB Storage • Liquid Cooling</text>
+  </g>
+</svg>

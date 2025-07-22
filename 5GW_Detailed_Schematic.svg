@@ -1,0 +1,527 @@
+<svg width="2400" height="1800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .title { font-family: Arial, sans-serif; font-size: 24px; font-weight: bold; fill: #2c3e50; }
+      .section-title { font-family: Arial, sans-serif; font-size: 16px; font-weight: bold; fill: #34495e; }
+      .equipment-label { font-family: Arial, sans-serif; font-size: 12px; fill: #2c3e50; }
+      .spec-text { font-family: Arial, sans-serif; font-size: 10px; fill: #7f8c8d; }
+      .power-line { stroke: #e74c3c; stroke-width: 3; fill: none; }
+      .cooling-line { stroke: #3498db; stroke-width: 2; fill: none; }
+      .network-line { stroke: #f39c12; stroke-width: 2; fill: none; }
+      .data-line { stroke: #9b59b6; stroke-width: 2; fill: none; }
+      .gpu-cluster { fill: #2ecc71; stroke: #27ae60; stroke-width: 2; }
+      .power-equipment { fill: #e74c3c; stroke: #c0392b; stroke-width: 2; }
+      .cooling-equipment { fill: #3498db; stroke: #2980b9; stroke-width: 2; }
+      .network-equipment { fill: #f39c12; stroke: #e67e22; stroke-width: 2; }
+      .storage-equipment { fill: #9b59b6; stroke: #8e44ad; stroke-width: 2; }
+      .facility-equipment { fill: #95a5a6; stroke: #7f8c8d; stroke-width: 2; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="2400" height="1800" fill="#ecf0f1"/>
+  
+  <!-- Title -->
+  <text x="1200" y="30" text-anchor="middle" class="title">5 GW AI Factory Data Center - Detailed Equipment Schematic</text>
+  <text x="1200" y="55" text-anchor="middle" class="spec-text">3.57M GB300/B300 GPUs • 6.65 GW Power • 8,929 ExaFLOPS Training • $210B Annual Revenue</text>
+  
+  <!-- Power Infrastructure Section -->
+  <g id="power-infrastructure">
+    <text x="50" y="100" class="section-title">POWER INFRASTRUCTURE</text>
+    
+    <!-- Grid Connections -->
+    <rect x="50" y="120" width="120" height="60" class="power-equipment"/>
+    <text x="110" y="140" text-anchor="middle" class="equipment-label">Grid Connections</text>
+    <text x="110" y="155" text-anchor="middle" class="spec-text">3x 500kV + 2x 345kV</text>
+    <text x="110" y="170" text-anchor="middle" class="spec-text">5 GW Capacity</text>
+    
+    <!-- Main Transformers -->
+    <rect x="200" y="120" width="100" height="60" class="power-equipment"/>
+    <text x="250" y="140" text-anchor="middle" class="equipment-label">Main Transformers</text>
+    <text x="250" y="155" text-anchor="middle" class="spec-text">15x 500 MVA</text>
+    <text x="250" y="170" text-anchor="middle" class="spec-text">500kV/13.8kV</text>
+    
+    <!-- Switchgear -->
+    <rect x="330" y="120" width="100" height="60" class="power-equipment"/>
+    <text x="380" y="140" text-anchor="middle" class="equipment-label">Switchgear</text>
+    <text x="380" y="155" text-anchor="middle" class="spec-text">Medium Voltage</text>
+    <text x="380" y="170" text-anchor="middle" class="spec-text">13.8kV Distribution</text>
+    
+    <!-- UPS Systems -->
+    <rect x="460" y="120" width="100" height="60" class="power-equipment"/>
+    <text x="510" y="140" text-anchor="middle" class="equipment-label">UPS Systems</text>
+    <text x="510" y="155" text-anchor="middle" class="spec-text">500 MW Total</text>
+    <text x="510" y="170" text-anchor="middle" class="spec-text">N+1 Redundancy</text>
+    
+    <!-- Battery Storage -->
+    <rect x="590" y="120" width="100" height="60" class="power-equipment"/>
+    <text x="640" y="140" text-anchor="middle" class="equipment-label">Battery Storage</text>
+    <text x="640" y="155" text-anchor="middle" class="spec-text">2 GWh Capacity</text>
+    <text x="640" y="170" text-anchor="middle" class="spec-text">Li-ion Technology</text>
+    
+    <!-- Backup Generators -->
+    <rect x="720" y="120" width="120" height="60" class="power-equipment"/>
+    <text x="780" y="140" text-anchor="middle" class="equipment-label">Backup Generators</text>
+    <text x="780" y="155" text-anchor="middle" class="spec-text">5.5 GW Capacity</text>
+    <text x="780" y="170" text-anchor="middle" class="spec-text">Natural Gas Turbines</text>
+    
+    <!-- Power Distribution Units -->
+    <rect x="870" y="120" width="100" height="60" class="power-equipment"/>
+    <text x="920" y="140" text-anchor="middle" class="equipment-label">PDUs</text>
+    <text x="920" y="155" text-anchor="middle" class="spec-text">480V Distribution</text>
+    <text x="920" y="170" text-anchor="middle" class="spec-text">Smart Monitoring</text>
+    
+    <!-- Power Lines -->
+    <line x1="170" y1="150" x2="200" y2="150" class="power-line"/>
+    <line x1="300" y1="150" x2="330" y2="150" class="power-line"/>
+    <line x1="430" y1="150" x2="460" y2="150" class="power-line"/>
+    <line x1="560" y1="150" x2="590" y2="150" class="power-line"/>
+    <line x1="690" y1="150" x2="720" y2="150" class="power-line"/>
+    <line x1="840" y1="150" x2="870" y2="150" class="power-line"/>
+  </g>
+  
+  <!-- Cooling Infrastructure Section -->
+  <g id="cooling-infrastructure">
+    <text x="50" y="250" class="section-title">COOLING INFRASTRUCTURE</text>
+    
+    <!-- Chilled Water Plants -->
+    <rect x="50" y="270" width="120" height="60" class="cooling-equipment"/>
+    <text x="110" y="290" text-anchor="middle" class="equipment-label">Chilled Water Plants</text>
+    <text x="110" y="305" text-anchor="middle" class="spec-text">3x 2,000 Ton</text>
+    <text x="110" y="320" text-anchor="middle" class="spec-text">Magnetic Bearing</text>
+    
+    <!-- Cooling Towers -->
+    <rect x="200" y="270" width="100" height="60" class="cooling-equipment"/>
+    <text x="250" y="290" text-anchor="middle" class="equipment-label">Cooling Towers</text>
+    <text x="250" y="305" text-anchor="middle" class="spec-text">60 Units</text>
+    <text x="250" y="320" text-anchor="middle" class="spec-text">Evaporative</text>
+    
+    <!-- Liquid Cooling Distribution -->
+    <rect x="330" y="270" width="120" height="60" class="cooling-equipment"/>
+    <text x="390" y="290" text-anchor="middle" class="equipment-label">Liquid Cooling</text>
+    <text x="390" y="305" text-anchor="middle" class="spec-text">Direct-to-Chip</text>
+    <text x="390" y="320" text-anchor="middle" class="spec-text">5,415 MW Capacity</text>
+    
+    <!-- Immersion Cooling -->
+    <rect x="480" y="270" width="100" height="60" class="cooling-equipment"/>
+    <text x="530" y="290" text-anchor="middle" class="equipment-label">Immersion Cooling</text>
+    <text x="530" y="305" text-anchor="middle" class="spec-text">Dielectric Fluid</text>
+    <text x="530" y="320" text-anchor="middle" class="spec-text">High Density Racks</text>
+    
+    <!-- Heat Exchangers -->
+    <rect x="610" y="270" width="100" height="60" class="cooling-equipment"/>
+    <text x="660" y="290" text-anchor="middle" class="equipment-label">Heat Exchangers</text>
+    <text x="660" y="305" text-anchor="middle" class="spec-text">Plate &amp; Frame</text>
+    <text x="660" y="320" text-anchor="middle" class="spec-text">Waste Heat Recovery</text>
+    
+    <!-- HVAC Systems -->
+    <rect x="740" y="270" width="100" height="60" class="cooling-equipment"/>
+    <text x="790" y="290" text-anchor="middle" class="equipment-label">HVAC Systems</text>
+    <text x="790" y="305" text-anchor="middle" class="spec-text">Precision Air</text>
+    <text x="790" y="320" text-anchor="middle" class="spec-text">Humidity Control</text>
+    
+    <!-- Cooling Lines -->
+    <line x1="170" y1="300" x2="200" y2="300" class="cooling-line"/>
+    <line x1="300" y1="300" x2="330" y2="300" class="cooling-line"/>
+    <line x1="450" y1="300" x2="480" y2="300" class="cooling-line"/>
+    <line x1="580" y1="300" x2="610" y2="300" class="cooling-line"/>
+    <line x1="710" y1="300" x2="740" y2="300" class="cooling-line"/>
+  </g>
+  
+  <!-- Compute Infrastructure Section -->
+  <g id="compute-infrastructure">
+    <text x="50" y="400" class="section-title">COMPUTE INFRASTRUCTURE</text>
+    
+    <!-- Training Clusters -->
+    <rect x="50" y="420" width="200" height="120" class="gpu-cluster"/>
+    <text x="150" y="440" text-anchor="middle" class="equipment-label">GB300 Training Clusters</text>
+    <text x="150" y="455" text-anchor="middle" class="spec-text">2,380,952 GB300 GPUs</text>
+    <text x="150" y="470" text-anchor="middle" class="spec-text">288 GB HBM3e per GPU</text>
+    <text x="150" y="485" text-anchor="middle" class="spec-text">1,400W TDP per GPU</text>
+    <text x="150" y="500" text-anchor="middle" class="spec-text">8,929 ExaFLOPS FP16</text>
+    <text x="150" y="515" text-anchor="middle" class="spec-text">35.7M PFLOPS FP4</text>
+    <text x="150" y="530" text-anchor="middle" class="spec-text">595,238 Servers</text>
+    
+    <!-- Inference Clusters -->
+    <rect x="280" y="420" width="200" height="120" class="gpu-cluster"/>
+    <text x="380" y="440" text-anchor="middle" class="equipment-label">B300 Inference Clusters</text>
+    <text x="380" y="455" text-anchor="middle" class="spec-text">1,190,476 B300 GPUs</text>
+    <text x="380" y="470" text-anchor="middle" class="spec-text">288 GB HBM3e per GPU</text>
+    <text x="380" y="485" text-anchor="middle" class="spec-text">1,300W TDP per GPU</text>
+    <text x="380" y="500" text-anchor="middle" class="spec-text">4,464 ExaFLOPS FP16</text>
+    <text x="380" y="515" text-anchor="middle" class="spec-text">17.9M PFLOPS FP4</text>
+    <text x="380" y="530" text-anchor="middle" class="spec-text">297,619 Servers</text>
+    
+    <!-- Server Racks -->
+    <rect x="510" y="420" width="120" height="60" class="facility-equipment"/>
+    <text x="570" y="440" text-anchor="middle" class="equipment-label">Server Racks</text>
+    <text x="570" y="455" text-anchor="middle" class="spec-text">892,857 Racks</text>
+    <text x="570" y="470" text-anchor="middle" class="spec-text">42U Height</text>
+    
+    <!-- CPU Servers -->
+    <rect x="510" y="500" width="120" height="40" class="facility-equipment"/>
+    <text x="570" y="515" text-anchor="middle" class="equipment-label">CPU Servers</text>
+    <text x="570" y="530" text-anchor="middle" class="spec-text">892,857 Servers</text>
+    
+    <!-- Memory Systems -->
+    <rect x="660" y="420" width="120" height="60" class="facility-equipment"/>
+    <text x="720" y="440" text-anchor="middle" class="equipment-label">Memory Systems</text>
+    <text x="720" y="455" text-anchor="middle" class="spec-text">1,029 PB Total</text>
+    <text x="720" y="470" text-anchor="middle" class="spec-text">HBM3e Technology</text>
+    
+    <!-- Interconnect -->
+    <rect x="660" y="500" width="120" height="40" class="network-equipment"/>
+    <text x="720" y="515" text-anchor="middle" class="equipment-label">NVLink 5.0</text>
+    <text x="720" y="530" text-anchor="middle" class="spec-text">GPU-to-GPU</text>
+  </g>
+  
+  <!-- Storage Infrastructure Section -->
+  <g id="storage-infrastructure">
+    <text x="50" y="600" class="section-title">STORAGE INFRASTRUCTURE</text>
+    
+    <!-- High-Performance Storage -->
+    <rect x="50" y="620" width="150" height="80" class="storage-equipment"/>
+    <text x="125" y="640" text-anchor="middle" class="equipment-label">High-Performance</text>
+    <text x="125" y="655" text-anchor="middle" class="equipment-label">Storage</text>
+    <text x="125" y="670" text-anchor="middle" class="spec-text">500 PB NVMe</text>
+    <text x="125" y="685" text-anchor="middle" class="spec-text">All-Flash Arrays</text>
+    
+    <!-- Capacity Storage -->
+    <rect x="230" y="620" width="150" height="80" class="storage-equipment"/>
+    <text x="305" y="640" text-anchor="middle" class="equipment-label">Capacity Storage</text>
+    <text x="305" y="655" text-anchor="middle" class="spec-text">1 EB Total</text>
+    <text x="305" y="670" text-anchor="middle" class="spec-text">Object Storage</text>
+    <text x="305" y="685" text-anchor="middle" class="spec-text">Erasure Coding</text>
+    
+    <!-- Storage Controllers -->
+    <rect x="410" y="620" width="120" height="80" class="storage-equipment"/>
+    <text x="470" y="640" text-anchor="middle" class="equipment-label">Storage</text>
+    <text x="470" y="655" text-anchor="middle" class="equipment-label">Controllers</text>
+    <text x="470" y="670" text-anchor="middle" class="spec-text">Distributed</text>
+    <text x="470" y="685" text-anchor="middle" class="spec-text">File Systems</text>
+    
+    <!-- Backup Systems -->
+    <rect x="560" y="620" width="120" height="80" class="storage-equipment"/>
+    <text x="620" y="640" text-anchor="middle" class="equipment-label">Backup Systems</text>
+    <text x="620" y="655" text-anchor="middle" class="spec-text">Tape Libraries</text>
+    <text x="620" y="670" text-anchor="middle" class="spec-text">Cloud Backup</text>
+    <text x="620" y="685" text-anchor="middle" class="spec-text">Disaster Recovery</text>
+    
+    <!-- Storage Network -->
+    <line x1="200" y1="660" x2="230" y2="660" class="data-line"/>
+    <line x1="380" y1="660" x2="410" y2="660" class="data-line"/>
+    <line x1="530" y1="660" x2="560" y2="660" class="data-line"/>
+  </g>
+  
+  <!-- Network Infrastructure Section -->
+  <g id="network-infrastructure">
+    <text x="50" y="750" class="section-title">NETWORK INFRASTRUCTURE</text>
+    
+    <!-- Core Switches -->
+    <rect x="50" y="770" width="120" height="60" class="network-equipment"/>
+    <text x="110" y="790" text-anchor="middle" class="equipment-label">Core Switches</text>
+    <text x="110" y="805" text-anchor="middle" class="spec-text">800G Ethernet</text>
+    <text x="110" y="820" text-anchor="middle" class="spec-text">Spine-Leaf</text>
+    
+    <!-- InfiniBand Network -->
+    <rect x="200" y="770" width="120" height="60" class="network-equipment"/>
+    <text x="260" y="790" text-anchor="middle" class="equipment-label">InfiniBand NDR</text>
+    <text x="260" y="805" text-anchor="middle" class="spec-text">400 Gb/s</text>
+    <text x="260" y="820" text-anchor="middle" class="spec-text">Backend Network</text>
+    
+    <!-- Edge Routers -->
+    <rect x="350" y="770" width="120" height="60" class="network-equipment"/>
+    <text x="410" y="790" text-anchor="middle" class="equipment-label">Edge Routers</text>
+    <text x="410" y="805" text-anchor="middle" class="spec-text">Internet Gateway</text>
+    <text x="410" y="820" text-anchor="middle" class="spec-text">BGP Routing</text>
+    
+    <!-- Load Balancers -->
+    <rect x="500" y="770" width="120" height="60" class="network-equipment"/>
+    <text x="560" y="790" text-anchor="middle" class="equipment-label">Load Balancers</text>
+    <text x="560" y="805" text-anchor="middle" class="spec-text">Application</text>
+    <text x="560" y="820" text-anchor="middle" class="spec-text">Traffic Distribution</text>
+    
+    <!-- Firewalls -->
+    <rect x="650" y="770" width="120" height="60" class="network-equipment"/>
+    <text x="710" y="790" text-anchor="middle" class="equipment-label">Firewalls</text>
+    <text x="710" y="805" text-anchor="middle" class="spec-text">Security</text>
+    <text x="710" y="820" text-anchor="middle" class="spec-text">DDoS Protection</text>
+    
+    <!-- Network Lines -->
+    <line x1="170" y1="800" x2="200" y2="800" class="network-line"/>
+    <line x1="320" y1="800" x2="350" y2="800" class="network-line"/>
+    <line x1="470" y1="800" x2="500" y2="800" class="network-line"/>
+    <line x1="620" y1="800" x2="650" y2="800" class="network-line"/>
+  </g>
+  
+  <!-- Facility Infrastructure Section -->
+  <g id="facility-infrastructure">
+    <text x="50" y="900" class="section-title">FACILITY INFRASTRUCTURE</text>
+    
+    <!-- Fire Suppression -->
+    <rect x="50" y="920" width="120" height="60" class="facility-equipment"/>
+    <text x="110" y="940" text-anchor="middle" class="equipment-label">Fire Suppression</text>
+    <text x="110" y="955" text-anchor="middle" class="spec-text">Clean Agent</text>
+    <text x="110" y="970" text-anchor="middle" class="spec-text">Pre-Action Sprinkler</text>
+    
+    <!-- Security Systems -->
+    <rect x="200" y="920" width="120" height="60" class="facility-equipment"/>
+    <text x="260" y="940" text-anchor="middle" class="equipment-label">Security Systems</text>
+    <text x="260" y="955" text-anchor="middle" class="spec-text">Biometric Access</text>
+    <text x="260" y="970" text-anchor="middle" class="spec-text">CCTV Monitoring</text>
+    
+    <!-- Environmental Monitoring -->
+    <rect x="350" y="920" width="120" height="60" class="facility-equipment"/>
+    <text x="410" y="940" text-anchor="middle" class="equipment-label">Environmental</text>
+    <text x="410" y="955" text-anchor="middle" class="spec-text">Temperature/Humidity</text>
+    <text x="410" y="970" text-anchor="middle" class="spec-text">Air Quality</text>
+    
+    <!-- Lighting Systems -->
+    <rect x="500" y="920" width="120" height="60" class="facility-equipment"/>
+    <text x="560" y="940" text-anchor="middle" class="equipment-label">Lighting Systems</text>
+    <text x="560" y="955" text-anchor="middle" class="spec-text">LED Efficient</text>
+    <text x="560" y="970" text-anchor="middle" class="spec-text">Motion Sensors</text>
+    
+    <!-- Cable Management -->
+    <rect x="650" y="920" width="120" height="60" class="facility-equipment"/>
+    <text x="710" y="940" text-anchor="middle" class="equipment-label">Cable Management</text>
+    <text x="710" y="955" text-anchor="middle" class="spec-text">Overhead Trays</text>
+    <text x="710" y="970" text-anchor="middle" class="spec-text">Fiber Optic</text>
+  </g>
+  
+  <!-- Data Center Zones -->
+  <g id="data-center-zones">
+    <text x="1200" y="100" class="section-title">DATA CENTER LAYOUT - 3 ZONES</text>
+    
+    <!-- Zone A -->
+    <rect x="1050" y="120" width="300" height="200" fill="none" stroke="#2c3e50" stroke-width="3"/>
+    <text x="1200" y="140" text-anchor="middle" class="equipment-label">ZONE A - 1.67 GW</text>
+    
+    <!-- Zone A Data Halls -->
+    <rect x="1070" y="160" width="80" height="40" class="gpu-cluster"/>
+    <text x="1110" y="175" text-anchor="middle" class="spec-text">Hall A1</text>
+    <text x="1110" y="190" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1160" y="160" width="80" height="40" class="gpu-cluster"/>
+    <text x="1200" y="175" text-anchor="middle" class="spec-text">Hall A2</text>
+    <text x="1200" y="190" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1250" y="160" width="80" height="40" class="gpu-cluster"/>
+    <text x="1290" y="175" text-anchor="middle" class="spec-text">Hall A3</text>
+    <text x="1290" y="190" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1070" y="210" width="80" height="40" class="gpu-cluster"/>
+    <text x="1110" y="225" text-anchor="middle" class="spec-text">Hall A4</text>
+    <text x="1110" y="240" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1160" y="210" width="80" height="40" class="gpu-cluster"/>
+    <text x="1200" y="225" text-anchor="middle" class="spec-text">Hall A5</text>
+    <text x="1200" y="240" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1250" y="210" width="80" height="40" class="gpu-cluster"/>
+    <text x="1290" y="225" text-anchor="middle" class="spec-text">Hall A6</text>
+    <text x="1290" y="240" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1070" y="260" width="80" height="40" class="gpu-cluster"/>
+    <text x="1110" y="275" text-anchor="middle" class="spec-text">Hall A7</text>
+    <text x="1110" y="290" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1160" y="260" width="80" height="40" class="gpu-cluster"/>
+    <text x="1200" y="275" text-anchor="middle" class="spec-text">Hall A8</text>
+    <text x="1200" y="290" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1250" y="260" width="80" height="40" class="gpu-cluster"/>
+    <text x="1290" y="275" text-anchor="middle" class="spec-text">Hall A9</text>
+    <text x="1290" y="290" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <!-- Zone B -->
+    <rect x="1050" y="350" width="300" height="200" fill="none" stroke="#2c3e50" stroke-width="3"/>
+    <text x="1200" y="370" text-anchor="middle" class="equipment-label">ZONE B - 1.67 GW</text>
+    
+    <!-- Zone B Data Halls (similar layout) -->
+    <rect x="1070" y="390" width="80" height="40" class="gpu-cluster"/>
+    <text x="1110" y="405" text-anchor="middle" class="spec-text">Hall B1</text>
+    <text x="1110" y="420" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1160" y="390" width="80" height="40" class="gpu-cluster"/>
+    <text x="1200" y="405" text-anchor="middle" class="spec-text">Hall B2</text>
+    <text x="1200" y="420" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1250" y="390" width="80" height="40" class="gpu-cluster"/>
+    <text x="1290" y="405" text-anchor="middle" class="spec-text">Hall B3</text>
+    <text x="1290" y="420" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1070" y="440" width="80" height="40" class="gpu-cluster"/>
+    <text x="1110" y="455" text-anchor="middle" class="spec-text">Hall B4</text>
+    <text x="1110" y="470" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1160" y="440" width="80" height="40" class="gpu-cluster"/>
+    <text x="1200" y="455" text-anchor="middle" class="spec-text">Hall B5</text>
+    <text x="1200" y="470" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1250" y="440" width="80" height="40" class="gpu-cluster"/>
+    <text x="1290" y="455" text-anchor="middle" class="spec-text">Hall B6</text>
+    <text x="1290" y="470" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1070" y="490" width="80" height="40" class="gpu-cluster"/>
+    <text x="1110" y="505" text-anchor="middle" class="spec-text">Hall B7</text>
+    <text x="1110" y="520" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1160" y="490" width="80" height="40" class="gpu-cluster"/>
+    <text x="1200" y="505" text-anchor="middle" class="spec-text">Hall B8</text>
+    <text x="1200" y="520" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1250" y="490" width="80" height="40" class="gpu-cluster"/>
+    <text x="1290" y="505" text-anchor="middle" class="spec-text">Hall B9</text>
+    <text x="1290" y="520" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <!-- Zone C -->
+    <rect x="1050" y="580" width="300" height="200" fill="none" stroke="#2c3e50" stroke-width="3"/>
+    <text x="1200" y="600" text-anchor="middle" class="equipment-label">ZONE C - 1.66 GW</text>
+    
+    <!-- Zone C Data Halls (similar layout) -->
+    <rect x="1070" y="620" width="80" height="40" class="gpu-cluster"/>
+    <text x="1110" y="635" text-anchor="middle" class="spec-text">Hall C1</text>
+    <text x="1110" y="650" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1160" y="620" width="80" height="40" class="gpu-cluster"/>
+    <text x="1200" y="635" text-anchor="middle" class="spec-text">Hall C2</text>
+    <text x="1200" y="650" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1250" y="620" width="80" height="40" class="gpu-cluster"/>
+    <text x="1290" y="635" text-anchor="middle" class="spec-text">Hall C3</text>
+    <text x="1290" y="650" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1070" y="670" width="80" height="40" class="gpu-cluster"/>
+    <text x="1110" y="685" text-anchor="middle" class="spec-text">Hall C4</text>
+    <text x="1110" y="700" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1160" y="670" width="80" height="40" class="gpu-cluster"/>
+    <text x="1200" y="685" text-anchor="middle" class="spec-text">Hall C5</text>
+    <text x="1200" y="700" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1250" y="670" width="80" height="40" class="gpu-cluster"/>
+    <text x="1290" y="685" text-anchor="middle" class="spec-text">Hall C6</text>
+    <text x="1290" y="700" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1070" y="720" width="80" height="40" class="gpu-cluster"/>
+    <text x="1110" y="735" text-anchor="middle" class="spec-text">Hall C7</text>
+    <text x="1110" y="750" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1160" y="720" width="80" height="40" class="gpu-cluster"/>
+    <text x="1200" y="735" text-anchor="middle" class="spec-text">Hall C8</text>
+    <text x="1200" y="750" text-anchor="middle" class="spec-text">397k GPUs</text>
+    
+    <rect x="1250" y="720" width="80" height="40" class="gpu-cluster"/>
+    <text x="1290" y="735" text-anchor="middle" class="spec-text">Hall C9</text>
+    <text x="1290" y="750" text-anchor="middle" class="spec-text">397k GPUs</text>
+  </g>
+  
+  <!-- Support Infrastructure -->
+  <g id="support-infrastructure">
+    <text x="1450" y="100" class="section-title">SUPPORT INFRASTRUCTURE</text>
+    
+    <!-- Control Center -->
+    <rect x="1450" y="120" width="150" height="60" class="facility-equipment"/>
+    <text x="1525" y="140" text-anchor="middle" class="equipment-label">Control Center</text>
+    <text x="1525" y="155" text-anchor="middle" class="spec-text">24/7 Operations</text>
+    <text x="1525" y="170" text-anchor="middle" class="spec-text">DCIM Systems</text>
+    
+    <!-- Maintenance Areas -->
+    <rect x="1620" y="120" width="150" height="60" class="facility-equipment"/>
+    <text x="1695" y="140" text-anchor="middle" class="equipment-label">Maintenance Areas</text>
+    <text x="1695" y="155" text-anchor="middle" class="spec-text">Spare Parts</text>
+    <text x="1695" y="170" text-anchor="middle" class="spec-text">Repair Facilities</text>
+    
+    <!-- Office Space -->
+    <rect x="1450" y="200" width="150" height="60" class="facility-equipment"/>
+    <text x="1525" y="220" text-anchor="middle" class="equipment-label">Office Space</text>
+    <text x="1525" y="235" text-anchor="middle" class="spec-text">Engineering</text>
+    <text x="1525" y="250" text-anchor="middle" class="spec-text">Administration</text>
+    
+    <!-- Loading Docks -->
+    <rect x="1620" y="200" width="150" height="60" class="facility-equipment"/>
+    <text x="1695" y="220" text-anchor="middle" class="equipment-label">Loading Docks</text>
+    <text x="1695" y="235" text-anchor="middle" class="spec-text">Equipment Delivery</text>
+    <text x="1695" y="250" text-anchor="middle" class="spec-text">Logistics</text>
+  </g>
+  
+  <!-- Performance Metrics -->
+  <g id="performance-metrics">
+    <text x="1450" y="320" class="section-title">PERFORMANCE METRICS</text>
+    
+    <rect x="1450" y="340" width="320" height="200" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+    
+    <text x="1460" y="360" class="equipment-label">Training Performance:</text>
+    <text x="1460" y="375" class="spec-text">• 8,929 ExaFLOPS (FP16)</text>
+    <text x="1460" y="390" class="spec-text">• 35.7 Million PFLOPS (FP4)</text>
+    
+    <text x="1460" y="410" class="equipment-label">Inference Performance:</text>
+    <text x="1460" y="425" class="spec-text">• 4,464 ExaFLOPS (FP16)</text>
+    <text x="1460" y="440" class="spec-text">• 17.9 Million PFLOPS (FP4)</text>
+    
+    <text x="1460" y="460" class="equipment-label">Infrastructure:</text>
+    <text x="1460" y="475" class="spec-text">• 6.65 GW Power Consumption</text>
+    <text x="1460" y="490" class="spec-text">• PUE: 1.105</text>
+    <text x="1460" y="505" class="spec-text">• 1,029 PB GPU Memory</text>
+    <text x="1460" y="520" class="spec-text">• 28.6M TB/s Memory Bandwidth</text>
+  </g>
+  
+  <!-- Financial Metrics -->
+  <g id="financial-metrics">
+    <text x="1450" y="580" class="section-title">FINANCIAL METRICS</text>
+    
+    <rect x="1450" y="600" width="320" height="150" fill="#f8f9fa" stroke="#dee2e6" stroke-width="2"/>
+    
+    <text x="1460" y="620" class="equipment-label">Investment:</text>
+    <text x="1460" y="635" class="spec-text">• CapEx: $300 Billion</text>
+    <text x="1460" y="650" class="spec-text">• OpEx: $70 Billion/year</text>
+    
+    <text x="1460" y="670" class="equipment-label">Revenue:</text>
+    <text x="1460" y="685" class="spec-text">• Annual Revenue: $210 Billion</text>
+    <text x="1460" y="700" class="spec-text">• ROI: 133.3% (5-year)</text>
+    <text x="1460" y="715" class="spec-text">• Payback Period: 2.1 years</text>
+    
+    <text x="1460" y="735" class="equipment-label">Environmental:</text>
+    <text x="1460" y="750" class="spec-text">• 23.3M tons CO2/year</text>
+  </g>
+  
+  <!-- Legend -->
+  <g id="legend">
+    <text x="50" y="1050" class="section-title">LEGEND</text>
+    
+    <rect x="50" y="1070" width="20" height="15" class="power-equipment"/>
+    <text x="80" y="1082" class="spec-text">Power Infrastructure</text>
+    
+    <rect x="200" y="1070" width="20" height="15" class="cooling-equipment"/>
+    <text x="230" y="1082" class="spec-text">Cooling Systems</text>
+    
+    <rect x="350" y="1070" width="20" height="15" class="gpu-cluster"/>
+    <text x="380" y="1082" class="spec-text">GPU Clusters</text>
+    
+    <rect x="500" y="1070" width="20" height="15" class="network-equipment"/>
+    <text x="530" y="1082" class="spec-text">Network Equipment</text>
+    
+    <rect x="650" y="1070" width="20" height="15" class="storage-equipment"/>
+    <text x="680" y="1082" class="spec-text">Storage Systems</text>
+    
+    <rect x="800" y="1070" width="20" height="15" class="facility-equipment"/>
+    <text x="830" y="1082" class="spec-text">Facility Infrastructure</text>
+    
+    <line x1="50" y1="1100" x2="70" y2="1100" class="power-line"/>
+    <text x="80" y="1105" class="spec-text">Power Distribution</text>
+    
+    <line x1="200" y1="1100" x2="220" y2="1100" class="cooling-line"/>
+    <text x="230" y="1105" class="spec-text">Cooling Distribution</text>
+    
+    <line x1="350" y1="1100" x2="370" y2="1100" class="network-line"/>
+    <text x="380" y="1105" class="spec-text">Network Connections</text>
+    
+    <line x1="500" y1="1100" x2="520" y2="1100" class="data-line"/>
+    <text x="530" y="1105" class="spec-text">Data Connections</text>
+  </g>
+  
+  <!-- Footer -->
+  <text x="1200" y="1750" text-anchor="middle" class="spec-text">5 GW AI Factory Data Center - World's Largest AI Computing Facility</text>
+  <text x="1200" y="1770" text-anchor="middle" class="spec-text">Designed for Advanced AI Training and Reasoning Model Inference at Unprecedented Scale</text>
+</svg>
